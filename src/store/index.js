@@ -1,8 +1,10 @@
-import { createStore } from "vuex";
-
+import { createStore, createLogger } from "vuex";
+import Public from './modules/Public'
+const debug = process.env.NODE_ENV !== 'production'
 export default createStore({
-  state: {},
-  mutations: {},
-  actions: {},
-  modules: {},
+    modules: {
+        Public
+    },
+    strict: debug,
+    plugins: debug ? [createLogger()] : []
 });

@@ -1,0 +1,203 @@
+@charset "utf-8";
+
+html,
+body,
+#app {
+    height: 100%;
+    width: 100%;
+    max-width: 100%;
+    overflow-y: hidden;
+    overflow-x: auto;
+    font-family: 'Microsoft YaHei', 'Helvetica Neue', 'Luxi Sans', 'DejaVu Sans', Tahoma, 'Hiragino Sans GB', STHeiti;
+    margin: 0px;
+    font-size: 12px;
+    color: #333;
+    background: #eff2f6;
+}
+
+:focus {
+    outline: none;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+div,
+hr,
+p,
+blockquote,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+pre,
+form,
+fieldset,
+legend,
+button,
+input,
+textarea,
+th,
+td {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    overflow: hidden;
+    height: 100%;
+    margin: 0 auto;
+    width: 100%;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    overflow: hidden;
+}
+
+#app {
+    position: fixed;
+    display: flex;
+    display: -webkit-box;
+    display: -webkit-flex;
+    -webkit-flex-flow: column nowrap;
+    flex-flow: column nowrap;
+}
+
+address,
+cite,
+dfn,
+em,
+var {
+    font-style: normal;
+}
+
+code,
+kbd,
+pre,
+samp {
+    font-family: courier new, courier, monospace;
+}
+
+small {
+    font-size: 10.8914px;
+}
+
+ul,
+ol,
+li,
+dl,
+dt,
+dd {
+    list-style: none;
+}
+
+sup {
+    vertical-align: text-top;
+}
+
+sub {
+    vertical-align: text-bottom;
+}
+
+legend {
+    color: #000;
+}
+
+fieldset,
+img {
+    border: 0;
+}
+
+button,
+input,
+select,
+textarea {
+    outline: none;
+    font: 10.8914px/1.5 tahoma, arial, sans-serif;
+    vertical-align: middle;
+    cursor: pointer;
+    resize: none;
+}
+
+table {
+    border-collapse: collapse;
+    font-size: 12px;
+    border-spacing: 0;
+}
+
+.clear:after {
+    clear: both;
+    content: '.';
+    display: block;
+    visibility: hidden;
+    width: 0px;
+    height: 0px;
+}
+
+.clear {
+    zoom: 1;
+}
+
+/*a*/
+a {
+    text-decoration: none;
+    color: #555;
+}
+
+img[lazy='error'] {
+    background-image: url('../image/image.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.iconfont {
+    font-size: 18px;
+    display: inline-block;
+}
+
+textarea {
+    &::-webkit-scrollbar {
+        width: 0px;
+    }
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+    color: #999 !important;
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+    color: #999 !important;
+}
+
+input::-moz-placeholder,
+textarea::-moz-placeholder {
+    color: #999 !important;
+    opacity: 1;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+
+input {
+    -moz-appearance: textfield;
+}
+
+input:focus,
+textarea:focus {
+    cursor: text;
+}

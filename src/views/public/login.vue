@@ -95,7 +95,21 @@ export default {
             let reg = /^(13[0-9]|14[01456879]|15[0-3,5-9]|16[2567]|17[0-8]|18[0-9]|19[0-3,5-9])\d{8}$/;
             return reg.test(phone);
         },
-        login() {},
+        login() {
+            this.init().sendVerif(() => { }).regPhone();
+            axios({
+                method: 'GET',
+                url: '/cmjc1/jiaocheng',
+                params: {
+                    method: 'delete',
+                    id: id,
+                },
+            }).then((res) => {
+                resolve(res.data);
+            }).catch((err) => {
+                reject(err);
+            });
+        },
         refreshIdentifyingCode(v) {
             v.target.src = '/api3/app/wds/login/authImg?v=' + Math.random();
         },

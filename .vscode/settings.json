@@ -5,19 +5,27 @@
         "source.fixAll.eslint": true
     },
     "eslint.format.enable": true,
-    "eslint.probe": ["javascript", "javascriptreact", "typescript", "typescriptreact", "html", "vue", "markdown"],
+    "eslint.probe": [
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+        "html",
+        "vue",
+        "markdown"
+    ],
     "vetur.format.defaultFormatter.html": "prettier",
-    "vetur.format.defaultFormatter.js": "prettier",
     "vetur.format.defaultFormatter.css": "prettier",
     "vetur.format.defaultFormatter.less": "prettier",
+    "vetur.format.defaultFormatter.js": "vscode-typescript",
     "[vue]": {
         "editor.defaultFormatter": "octref.vetur"
-    },
-    "[javascript]": {
-        "editor.defaultFormatter": "SimonSiefke.prettier-vscode"
     },
     "[less]": {
         "editor.suggest.insertMode": "replace",
         "editor.defaultFormatter": "SimonSiefke.prettier-vscode"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
     }
 }

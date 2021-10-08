@@ -11,7 +11,7 @@ export default {
         watch(route, (to) => {
             if (to.query.hasPower === '1') {
                 ElMessageBox.confirm(`<span>当前登录子账号无访问权限，请联系主店设置，</span><a style='margin:0px 30px 0px 5px' target='_blank' href='https://www.chuanmeidayin.com/article/1095' class='FontBlue Pointer' >如何设置</a>`, '提示', {
-                    confirmButtonText: '我知道了 ',
+                    confirmButtonText: '我知道了',
                     cancelButtonText: '取消',
                     showCancelButton: false,
                     dangerouslyUseHTMLString: true,

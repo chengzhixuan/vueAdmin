@@ -5,7 +5,8 @@
 	"scripts": {
 		"serve": "vue-cli-service serve",
 		"build": "vue-cli-service build",
-		"lint": "vue-cli-service lint"
+		"lint": "vue-cli-service lint",
+		"commit": "cz"
 	},
 	"dependencies": {
 		"axios": "^0.21.4",
@@ -29,6 +30,8 @@
 		"@vue/compiler-sfc": "^3.0.0",
 		"@vue/eslint-config-prettier": "^6.0.0",
 		"babel-eslint": "^10.1.0",
+		"commitizen": "^4.2.4",
+		"cz-conventional-changelog": "^3.3.0",
 		"eslint": "^6.7.2",
 		"eslint-plugin-prettier": "^3.3.1",
 		"eslint-plugin-vue": "^7.0.0",
@@ -62,5 +65,10 @@
 		"> 1%",
 		"last 2 versions",
 		"not dead"
-	]
+	],
+	"config": {
+		"commitizen": {
+			"path": "./node_modules/cz-conventional-changelog"
+		}
+	}
 }

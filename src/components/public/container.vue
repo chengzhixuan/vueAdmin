@@ -4,8 +4,8 @@
             <img class="ContainerHeaderLogo" @click="$router.push('/')" src="../../assets/image/logo.png" />
             <div class="ContainerHeaderNick">
                 <div class="ContainerHeaderName">
-                    <span class="ListaliasName CopyText" :data-clipboard-text="userMsg.user_name">{{ userMsg.realname }}</span>
-                    <span @click="signOut" class="ContainerHeaderShopChange FlexRow FontBlue">退出</span>
+                    <span class="ListaliasName CopyText" :data-clipboard-text="userMsg.userName">{{ userMsg.userName }}</span>
+                    <span @click="signOut" class="ContainerHeaderShopChange FlexRow">退出</span>
                 </div>
             </div>
         </el-header>
@@ -16,9 +16,7 @@
                 </div>
                 <MenuLeft :active="menuLeft" />
             </el-aside>
-            <el-main class="ContainerMain">
-                <slot name="main"></slot>
-            </el-main>
+            <slot name="main"></slot>
         </el-container>
         <slot></slot>
     </el-container>
@@ -47,7 +45,7 @@ export default {
             userMsg: 'Public/getUserMsg',
         }),
     },
-    created() {},
+    created() { },
     methods: {
         signOut() {
             localStorage.clearAll();
@@ -117,6 +115,8 @@ export default {
                 background: #d3efff;
                 border-radius: 11px;
                 font-size: 12px;
+                align-items: center;
+                justify-content: center;
                 color: #fff !important;
                 background: #409eff;
             }
@@ -144,19 +144,6 @@ export default {
         }
     }
 }
-.ContainerMain {
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: flex-start;
-    padding: 0px;
-    overflow-y: auto;
-    max-height: 100%;
-    width: 100%;
-    background: #fff;
-    &::-webkit-scrollbar {
-        width: 0px;
-    }
-}
 </style>
 <style lang="less">
 .el-menu--vertical {
@@ -164,7 +151,7 @@ export default {
         background: #2a2a2d !important;
     }
     .el-menu-item,
-    .el-submenu__title {
+    .el-sub-menu__title {
         height: 40px;
         line-height: 40px;
         color: #fff !important;
@@ -203,14 +190,14 @@ export default {
             -webkit-font-smoothing: antialiased;
             font-size: 16px;
         }
-        .el-submenu__icon-arrow {
+        .el-sub-menu__icon-arrow {
             top: 53%;
             color: #fff;
         }
         .el-icon-arrow-down:before {
             content: '\e790';
         }
-        .el-submenu .el-submenu__title {
+        .el-sub-menu .el-sub-menu__title {
             height: 40px;
             line-height: 40px;
             padding-left: 5px !important;
@@ -224,12 +211,11 @@ export default {
         & > .el-menu-item {
             height: 40px;
             line-height: 40px;
-            color: #363840 !important;
+            color: #fff !important;
             font-size: 12px;
             padding-left: 5px !important;
-            background-color: #fff !important;
             &:hover {
-                background-color: #f5f5f5 !important;
+                background-color: rgb(66, 72, 90) !important;
             }
             &.is-active .icondianpu_,
             &.is-active .icondaochufffpx {
@@ -244,7 +230,7 @@ export default {
                 }
             }
         }
-        .el-submenu .el-menu-item {
+        .el-sub-menu .el-menu-item {
             height: 40px;
             line-height: 40px;
             font-size: 12px;
@@ -256,7 +242,7 @@ export default {
                 background: #1c1c1c !important;
             }
         }
-        .el-submenu.is-opened ul li.el-menu-item.is-active,
+        .el-sub-menu.is-opened ul li.el-menu-item.is-active,
         .el-menu-item.is-active {
             color: #fff !important;
             background: #409eff !important;
@@ -264,7 +250,7 @@ export default {
         }
     }
     .el-menu--collapse {
-        .el-submenu .el-submenu__title {
+        .el-sub-menu .el-sub-menu__title {
             padding-left: 20px !important;
         }
     }

@@ -1,5 +1,5 @@
 <template>
-    <div class="RouterPage LoginPage">
+    <div class="LoginPage">
         <div class="LoginEchart"></div>
         <div class="CarouselLogRightShare">
             <div class="CarouselLogRightHeader FlexRow">
@@ -95,7 +95,14 @@ export default {
             let reg = /^(13[0-9]|14[01456879]|15[0-3,5-9]|16[2567]|17[0-8]|18[0-9]|19[0-3,5-9])\d{8}$/;
             return reg.test(phone);
         },
-        login() { },
+        login() {
+            this.$store.dispatch("Public/setUserMsg", {
+                userName: '测试1',
+                token: 123456,
+                authList: []
+            });
+            this.$router.push('/')
+        },
         refreshIdentifyingCode(v) {
             v.target.src = '/api3/app/wds/login/authImg?v=' + Math.random();
         },
@@ -104,6 +111,11 @@ export default {
 </script>
 <style lang="less" scoped>
 .LoginPage {
+    height: 100%;
+    width: 100%;
+    padding: 0px;
+    display: flex;
+    flex-flow: column nowrap;
     position: absolute;
     .LoginEchart {
         position: absolute;

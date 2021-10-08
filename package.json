@@ -19,6 +19,8 @@
 		"vuex": "^4.0.0-0"
 	},
 	"devDependencies": {
+		"@commitlint/cli": "^13.2.0",
+		"@commitlint/config-conventional": "^13.2.0",
 		"@vue/cli-plugin-babel": "~4.5.0",
 		"@vue/cli-plugin-eslint": "~4.5.0",
 		"@vue/cli-plugin-router": "~4.5.0",
@@ -30,6 +32,7 @@
 		"eslint": "^6.7.2",
 		"eslint-plugin-prettier": "^3.3.1",
 		"eslint-plugin-vue": "^7.0.0",
+		"husky": "^7.0.2",
 		"less": "^4.1.1",
 		"less-loader": "^7.0.1",
 		"prettier": "^2.2.1"

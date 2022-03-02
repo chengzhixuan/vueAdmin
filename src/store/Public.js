@@ -1,7 +1,7 @@
 import localStorage from 'store'
+import { Auth } from './auth'
 import { defineStore } from 'pinia'
-
-export const PublicStore = defineStore('PublicStore', {
+export const PublicStore = defineStore('Public', {
     state: () => {
         return {
             isCollapse: localStorage.get('isCollapse') === undefined ? false : localStorage.get('isCollapse'),
@@ -21,10 +21,18 @@ export const PublicStore = defineStore('PublicStore', {
             this.isCollapse = isCollapse
             localStorage.set('isCollapse', isCollapse);
         },
-        setUserMsg(userMsg) {
-            localStorage.set('userMsg', userMsg)
-            localStorage.set('token', userMsg.token)
-            this.userMsg = userMsg
+        async setUserMsg(userMsg) {
+            const authStore = Auth()
+            let res = await authStore.setPower()
+            if (res) {
+                userMsg.authList = authStore.power
+                localStorage.set('userMsg', userMsg)
+                localStorage.set('token', userMsg.token)
+                this.userMsg = userMsg
+                return true
+            } else {
+                return false
+            }
         }
     }
 })

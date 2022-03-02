@@ -62,21 +62,22 @@
 </template>
 <script setup>
 import * as echarts from 'echarts';
+import axios from '@/api/axios'
 import 'echarts-gl';
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
 import { PublicStore } from '@/store/Public';
 import api from '@/api'
-let publicSto = PublicStore()
+let publicStore = PublicStore()
 let router = useRouter()
 let active = ref(1);
 let subMobile = ref('');
 let password = ref('');
 let showPwd = ref(false);
 let rand = ref('');
-let phone = ref('');
-let verifCode = ref('');
+let phone = ref('1526568465');
+let verifCode = ref('23423');
 let sendVerTime = ref(60);
 let sendVer = ref(null);
 onMounted(() => {
@@ -136,8 +137,18 @@ const regPhone = (phone) => {
 }
 const login = async () => {
     let res = await api.BaseApi.login(phone.value, verifCode.value)
-    publicSto.setUserMsg(res.data)
-    router.push('/')
+    if (res.code === 200) {
+        let power = await publicStore.setUserMsg(res.data)
+        if (power) {
+            axios.defaults.headers.common['token'] = res.data.token;
+            router.push('/')
+        } else {
+            ElMessage({ type: 'error', message: '获取权限错误' })
+        }
+    } else {
+        ElMessage({ type: 'error', message: res.message ? res.message : res })
+    }
+
 }
 const refreshIdentifyingCode = (v) => {
     v.target.src = '/api3/app/wds/login/authImg?v=' + Math.random();

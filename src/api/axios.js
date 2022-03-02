@@ -23,19 +23,23 @@ const api = axios.create({
         'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
     },
 });
-api.interceptors.response.use(
-    (response) => {
-        if (response.data == 401) {
-            localStorage.clearAll();
-            router.push('/login');
-        }
-        return response;
-    },
-    (error) => {
-        if (parseInt(error.code) == 401) {
-            localStorage.clearAll();
-        }
-        return Promise.reject(error);
+api.interceptors.response.use((response) => {
+    if (response.data == 401) {
+        localStorage.clearAll();
+        router.push('/login');
     }
-);
+    return response;
+}, (error) => {
+    return Promise.resolve({
+        data: {
+            code: error.response.status,
+            message: error.message,
+            data: error.response.data
+        }
+    });
+});
+let token = localStorage.get('token')
+if (token) {
+    api.defaults.headers.common['token'] = token;
+}
 export default api;

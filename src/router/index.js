@@ -41,13 +41,18 @@ let menuList = [
     {
         router: '/',
         title: '首页',
-        icon: 'iconwenzhang',
+        icon: 'iconzhanghao',
         ch: []
     }, {
         title: '用户管理',
         router: '/adminSet',
-        icon: 'iconshezhi',
+        icon: 'iconzizhanghaoguanli',
         ch: [{ router: '/adminSet/accountSet', title: '权限配置' }],
+    }, {
+        title: '系统设置',
+        router: '/setting',
+        icon: 'iconshezhi',
+        ch: [],
     },
 ];
 // 获取菜单

@@ -4,60 +4,42 @@
             <img class="ContainerHeaderLogo" @click="$router.push('/')" src="../../assets/image/logo.png" />
             <div class="ContainerHeaderNick">
                 <div class="ContainerHeaderName">
-                    <span class="ListaliasName CopyText" :data-clipboard-text="userMsg.userName">{{ userMsg.userName }}</span>
+                    <span class="ListaliasName CopyText" :data-clipboard-text="store.userMsg.userName">{{ store.userMsg.userName }}</span>
                     <span @click="signOut" class="ContainerHeaderShopChange FlexRow">退出</span>
                 </div>
             </div>
         </el-header>
         <el-container class="ContainerBody">
-            <el-aside class="ContainerLeft scrollbarAuto" :width="isCollapse ? '64px' : '150px'">
+            <el-aside class="ContainerLeft scrollbarAuto" :width="store.isCollapse ? '64px' : '150px'">
                 <div class="isCollapse Pointer" @click="isCollapseChange()">
-                    <i :class="isCollapse ? 'iconfold' : 'iconunfold'" class="iconfont"></i>
+                    <i :class="store.isCollapse ? 'iconfold' : 'iconunfold'" class="iconfont"></i>
                 </div>
-                <MenuLeft :active="menuLeft" />
+                <MenuLeft :active="props.menuLeft" />
             </el-aside>
             <slot name="main"></slot>
         </el-container>
         <slot></slot>
     </el-container>
 </template>
-<script>
+<script setup>
 import localStorage from 'store';
 import { PublicStore } from '@/store/Public'
-import { mapState } from 'pinia'
-export default {
-    data() {
-        return {};
+import { useRouter } from 'vue-router'
+const props = defineProps({
+    menuLeft: {
+        type: String,
+        default: '',
     },
-    props: {
-        menuLeft: {
-            type: String,
-            default: '',
-        },
-        isShowLeft: {
-            // 控制侧边栏的有无
-            type: Boolean,
-            default: true,
-        },
-    },
-    computed: {
-        ...mapState(PublicStore, ['getIsCollapse', 'getUserMsg']),
-        ...mapState(PublicStore, {
-            isCollapse: 'getIsCollapse',
-            userMsg: store => store.userMsg,
-        }),
-    },
-    created() { },
-    methods: {
-        signOut() {
-            localStorage.clearAll();
-            this.$router.push('/login');
-        },
-        isCollapseChange() {
-            this.$store.dispatch('Public/isCollapse', !this.isCollapse);
-        },
-    },
-};
+})
+const store = PublicStore()
+const router = useRouter()
+const signOut = () => {
+    localStorage.clearAll();
+    router.push('/login');
+}
+const isCollapseChange = () => {
+    store.setIsCollapse(!store.isCollapse)
+}
 </script>
 <style lang="less" scoped>
 .Container {

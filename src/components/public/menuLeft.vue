@@ -1,7 +1,7 @@
 <template>
     <div class="ContainerLeftMenu">
         <el-menu :collapse-transition="false" @select="openUrl" :unique-opened="true" :collapse="isCollapse" :default-active="active" background-color="rgb(66, 72, 90)" text-color="#615E5E">
-            <template v-for="item in menulist" :key="item.router">
+            <template v-for="item in leftMenu" :key="item.router">
                 <el-sub-menu v-if="item.ch && item.ch.length > 0" :index="item.router">
                     <template #title>
                         <i class="iconfont" :class="item.icon"></i>
@@ -17,37 +17,22 @@
         </el-menu>
     </div>
 </template>
-<script>
-import { getMenu } from '@/router';
+<script setup>
 import { PublicStore } from '@/store/Public'
-import { mapState } from 'pinia'
-import { ref } from 'vue';
-export default {
-    setup() {
-        let menulist = ref(getMenu());
-        return {
-            menulist,
-        };
-    },
-    props: {
-        active: {
-            type: String,
-            default: '/',
-        },
-    },
-    computed: {
-        ...mapState(PublicStore, {
-            isCollapse: 'getIsCollapse',
-        }),
-    },
-    watch: {},
-    mounted() { },
-    methods: {
-        openUrl(url) {
-            this.$router.push(url).catch((data) => {
-                console.log(data.name);
-            });
-        },
-    },
-};
+import { useRouter } from 'vue-router'
+import { storeToRefs } from 'pinia'
+defineProps({
+    active: {
+        type: String,
+        default: '/',
+    }
+})
+const router = useRouter()
+const { isCollapse, leftMenu } = storeToRefs(PublicStore())
+
+const openUrl = (url) => {
+    router.push(url).catch((data) => {
+        console.log(data.name);
+    });
+}
 </script>

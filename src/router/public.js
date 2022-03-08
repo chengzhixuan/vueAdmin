@@ -9,9 +9,6 @@ const routers = [{
 }, {
     path: '/setting',
     name: 'setting',
-    meta: {
-        auth: true,
-    },
     component: () =>
         import ( /* webpackChunkName: 'setting' */ '../views/public/setting.vue'),
 }, {

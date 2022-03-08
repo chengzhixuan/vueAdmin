@@ -34,7 +34,6 @@
 <script>
 import { SetPower } from "./components"
 import api from '@/api'
-import { getMenu } from '@/router'
 import { PublicStore } from '@/store/Public'
 import { ref, reactive, onMounted, computed } from 'vue'
 import lodash from 'lodash'
@@ -111,7 +110,7 @@ export default {
         }
         const init = () => {//查询
             getUserList();
-            getMenuList.value = lodash.cloneDeep(getMenu(userMsg.value));
+            getMenuList.value = lodash.cloneDeep(store.leftMenu);
         }
         const setPower = (v = {}) => {//设置权限
             Object.assign(item, v)

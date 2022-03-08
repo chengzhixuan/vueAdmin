@@ -136,22 +136,21 @@ const regPhone = (phone) => {
     return reg.test(phone);
 }
 const login = async () => {
-    let res = await api.BaseApi.login(phone.value, verifCode.value)
-    if (res.code === 200) {
-        let power = await publicStore.setUserMsg(res.data)
-        if (power) {
+    if (active.value === 1) { // 手机号登录
+        let res = await api.BaseApi.login(phone.value, verifCode.value)
+        if (res.code === 200) {
+            publicStore.setUserMsg(res.data)
             axios.defaults.headers.common['token'] = res.data.token;
             router.push('/')
         } else {
-            ElMessage({ type: 'error', message: '获取权限错误' })
+            ElMessage({ type: 'error', message: res.message ? res.message : res })
         }
-    } else {
-        ElMessage({ type: 'error', message: res.message ? res.message : res })
-    }
+    } else { // 密码登录
 
+    }
 }
 const refreshIdentifyingCode = (v) => {
-    v.target.src = '/api3/app/wds/login/authImg?v=' + Math.random();
+    v.target.src = '/test/authImg?v=' + Math.random();
 }
 </script>
 <style lang="less" scoped>

@@ -2,7 +2,7 @@
     <Container menuLeft="/setting">
         <template v-slot:main>
             <el-main class="RouterPage SettingPage">
-                <div></div>
+                <div>setting</div>
             </el-main>
         </template>
     </Container>

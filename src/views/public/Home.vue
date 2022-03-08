@@ -2,17 +2,15 @@
     <Container menuLeft="/">
         <template v-slot:main>
             <el-main class="RouterPage HomePage">
-                <div></div>
+                <div @click="goPage()">home</div>
             </el-main>
         </template>
     </Container>
 </template>
-<script>
-export default {
-    name: 'Home',
-    computed: {
-    },
-    methods: {
-    }
-};
+<script setup>
+import { useRouter } from 'vue-router'
+const router = useRouter()
+const goPage = () => {
+    router.push('/ghtt')
+}
 </script>

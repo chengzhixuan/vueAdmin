@@ -11,17 +11,17 @@
                     <el-input size="mini" style="width: 250px" placeholder="输入账号" v-model="accountName"></el-input>
                 </div>
                 <div v-if="item.userId === undefined">
-                    <span class="Font666 Require">登录密码： </span>
+                    <span class="Font666 Require">登录密码：</span>
                     <el-input size="mini" style="width: 250px" placeholder="数字,英文,字符中的两种以上，长度6-20" v-model="userpass"></el-input>
                 </div>
                 <div>
-                    <span class="Font666">手机号： </span>
+                    <span class="Font666">手机号：</span>
                     <el-input size="mini" style="width: 250px" placeholder="输入手机号" v-model="phone"></el-input>
                 </div>
                 <div class="UserName">
                     <span class="Font666 Require">角色权限：</span>
                     <el-select style="width: 250px" @change="roleChange" size="mini" v-model="role" placeholder="请选择角色">
-                        <el-option label="无" value=""></el-option>
+                        <el-option label="无" value></el-option>
                         <el-option v-for="i in Object.keys(power)" :key="i" :label="power[i].name" :value="i"></el-option>
                     </el-select>
                 </div>
@@ -74,7 +74,6 @@
 
 <script>
 import api from '@/api'
-import { getMenu } from '@/router'
 import lodash from 'lodash'
 import { PublicStore } from '@/store/Public'
 import { ElMessage } from 'element-plus'
@@ -150,7 +149,7 @@ export default {
             phone.value = item.value.mobilenum ?? '';
             userpass.value = '';
             let authList = JSON.parse(item.value.authList || '[]')
-            let a = lodash.cloneDeep(getMenu())
+            let a = lodash.cloneDeep(store.leftMenu)
             a.forEach(i => { // 设置已经添加的权限
                 if (i.title === '教程中心') {
                     i.ch.push({ router: '/addCourse', title: '文章编辑' },)
@@ -386,7 +385,7 @@ export default {
         }
         .Require {
             &::before {
-                content: '*';
+                content: "*";
                 position: absolute;
                 font-size: 16px;
                 margin-left: 3px;

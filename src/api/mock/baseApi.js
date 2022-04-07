@@ -11,6 +11,6 @@ Mock.mock('/test/getPower', function() {
     return {
         code: 200,
         message: '成功',
-        data: ['/adminSet/accountSet'],
+        data: [],
     }
 })

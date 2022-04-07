@@ -1,9 +1,10 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 import publics from './public';
 import adminSet from './adminSet';
+import echart from './echart';
 import localStorage from 'store';
 import { PublicStore } from '@/store/Public';
-const routesList = [...publics, ...adminSet];
+const routesList = [...publics, ...adminSet, ...echart];
 const routes = routesList.filter((i) => {
     return i.meta ? i.meta.noAauth : false;
 });

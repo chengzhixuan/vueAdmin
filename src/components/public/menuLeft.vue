@@ -29,7 +29,6 @@ defineProps({
 })
 const router = useRouter()
 const { isCollapse, leftMenu } = storeToRefs(PublicStore())
-
 const openUrl = (url) => {
     router.push(url).catch((data) => {
         console.log(data.name);

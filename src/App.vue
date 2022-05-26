@@ -23,8 +23,9 @@ watch(route, (to) => {
 </script>
 <style lang="less">
 @import "./assets/styles/style.less";
-@import "//at.alicdn.com/t/font_2824716_lzszyqiwhqe.css";
+@import "//at.alicdn.com/t/font_2824716_iv2xtgomoja.css";
 @import "./assets/styles/golbal.less";
+
 .el-main.RouterPage {
     display: flex;
     flex-flow: column nowrap;
@@ -36,6 +37,7 @@ watch(route, (to) => {
     max-height: 100%;
     width: 100%;
     background: #fff;
+
     &::-webkit-scrollbar {
         width: 0px;
     }

@@ -5,12 +5,12 @@ const routers = [{
         noAauth: true,
     },
     component: () =>
-        import ( /* webpackChunkName: 'Home' */ '../views/public/Home.vue'),
+        import( /* webpackChunkName: 'Home' */ '../views/public/Home.vue'),
 }, {
     path: '/setting',
     name: 'setting',
     component: () =>
-        import ( /* webpackChunkName: 'setting' */ '../views/public/setting.vue'),
+        import( /* webpackChunkName: 'setting' */ '../views/public/setting.vue'),
 }, {
     path: '/login',
     name: 'login',
@@ -18,6 +18,14 @@ const routers = [{
         noAauth: true,
     },
     component: () =>
-        import ( /* webpackChunkName: 'login' */ '../views/public/login.vue'),
-}, ];
+        import( /* webpackChunkName: 'login' */ '../views/public/login.vue'),
+}, {
+    path: '/editor',
+    name: 'editor',
+    meta: {
+        noAauth: true,
+    },
+    component: () =>
+        import( /* webpackChunkName: 'editor' */ '../views/public/editor.vue'),
+},];
 export default routers;

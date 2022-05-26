@@ -7,6 +7,7 @@ let menuList = [
     { router: '/', title: '首页', noAauth: true, icon: 'iconzhanghao', ch: [] },
     { router: '/adminSet', title: '用户管理', icon: 'iconzizhanghaoguanli', ch: [{ router: '/adminSet/accountSet', title: '权限配置' }] },
     { router: '/echart', title: '表格插件', icon: 'iconbiaoge', ch: [] },
+    { router: '/editor', title: '编辑器', icon: 'iconbianji', ch: [] },
     { router: '/setting', title: '系统设置', icon: 'iconshezhi', ch: [] }
 ];
 export const PublicStore = defineStore('Public', {

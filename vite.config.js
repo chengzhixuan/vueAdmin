@@ -61,6 +61,18 @@ export default defineConfig({
     },
     base: './',
     server: {
+        open: true,
         port: 8080,
+        proxy: {
+            "/test": {
+                target: "http://localhost:3000",
+                changeOrigin: true,
+                ws: true,
+                rewrite: (path) => path.replace(/^\/test/, ''),
+                cookieDomainRewrite: {
+                    "*": ""
+                },
+            }
+        }
     }
 })

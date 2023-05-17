@@ -9,10 +9,15 @@
                     </el-button>
                 </div>
                 <div class="RouterPageTable">
-                    <el-table height="100%" empty-text="暂无数据" :header-cell-style="{ background: '#ECF5FF', 'font-weight': '400', color: '#333333' }" size="mini" :data="tableData" v-loading="loading" element-loading-spinner="el-icon-loading">
-                        <el-table-column show-overflow-tooltip align="center" prop="realname" label="姓名" width="120"></el-table-column>
-                        <el-table-column show-overflow-tooltip align="center" prop="mobilenum" label="手机号" width="120"></el-table-column>
-                        <el-table-column show-overflow-tooltip align="center" prop="userText" label="角色" width="120"></el-table-column>
+                    <el-table height="100%" empty-text="暂无数据"
+                        :header-cell-style="{ background: '#ECF5FF', 'font-weight': '400', color: '#333333' }" size="mini"
+                        :data="tableData" v-loading="loading" element-loading-spinner="el-icon-loading">
+                        <el-table-column show-overflow-tooltip align="center" prop="realname" label="姓名"
+                            width="120"></el-table-column>
+                        <el-table-column show-overflow-tooltip align="center" prop="mobilenum" label="手机号"
+                            width="120"></el-table-column>
+                        <el-table-column show-overflow-tooltip align="center" prop="userText" label="角色"
+                            width="120"></el-table-column>
                         <el-table-column label="权限名称">
                             <template v-slot="scope">
                                 <span>{{ formatPower(scope.row.rights) }}</span>
@@ -20,7 +25,8 @@
                         </el-table-column>
                         <el-table-column align="center" label="操作" width="200px">
                             <template v-slot="scope">
-                                <span class="FontBlue RouterPageTableHandle Pointer" @click="setPower(scope.row)">设置权限</span>
+                                <span class="FontBlue RouterPageTableHandle Pointer"
+                                    @click="setPower(scope.row)">设置权限</span>
                                 <span class="FontRed Pointer" @click="delAccount(scope.row.username)">删除账号</span>
                             </template>
                         </el-table-column>
@@ -36,7 +42,7 @@ import { SetPower } from "./components"
 import api from '@/api'
 import { PublicStore } from '@/store/Public'
 import { ref, reactive, onMounted, computed } from 'vue'
-import lodash from 'lodash'
+import { cloneDeep } from '@/util';
 import { ElMessage, ElMessageBox } from 'element-plus'
 export default {
     setup() {
@@ -110,7 +116,7 @@ export default {
         }
         const init = () => {//查询
             getUserList();
-            getMenuList.value = lodash.cloneDeep(store.leftMenu);
+            getMenuList.value = cloneDeep(store.leftMenu);
         }
         const setPower = (v = {}) => {//设置权限
             Object.assign(item, v)
@@ -157,13 +163,16 @@ export default {
     display: flex;
     flex-flow: column nowrap;
 }
+
 .AccountSet {
     padding: 10px 25px;
     justify-content: flex-end;
+
     .iconadd3 {
         font-size: 12px;
     }
 }
+
 .RouterPageTable {
     padding-bottom: 30px;
     flex-grow: 1;

@@ -1,5 +1,6 @@
 <template>
-    <el-dialog title="子账号编辑" :close-on-click-modal="false" :before-close="setPowerclose" v-model="visible" append-to-body width="600px">
+    <el-dialog title="子账号编辑" :close-on-click-modal="false" :before-close="setPowerclose" v-model="visible" append-to-body
+        width="600px">
         <div class="SetPowerDialog" v-loading="loading" element-loading-spinner="el-icon-loading">
             <div class="AccountInfo">
                 <div>
@@ -12,7 +13,8 @@
                 </div>
                 <div v-if="item.userId === undefined">
                     <span class="Font666 Require">登录密码：</span>
-                    <el-input size="mini" style="width: 250px" placeholder="数字,英文,字符中的两种以上，长度6-20" v-model="userpass"></el-input>
+                    <el-input size="mini" style="width: 250px" placeholder="数字,英文,字符中的两种以上，长度6-20"
+                        v-model="userpass"></el-input>
                 </div>
                 <div>
                     <span class="Font666">手机号：</span>
@@ -52,7 +54,8 @@
                         </div>
                     </div>
                     <div v-if="menuSub > -1 && mentList[menu].ch[menuSub].ch && mentList[menu].ch[menuSub].ch.length > 0">
-                        <span class="HighSearchAddressNoPro HighSearchAddressArea" v-for="(i, index) in mentList[menu].ch[menuSub].ch" :key="i.title">
+                        <span class="HighSearchAddressNoPro HighSearchAddressArea"
+                            v-for="(i, index) in mentList[menu].ch[menuSub].ch" :key="i.title">
                             <el-checkbox size="mini" @change="(v) => itemChange(i, index, v)" v-model="i.c">
                                 <span class="HighSearchAddressText">{{ i.title }}</span>
                             </el-checkbox>
@@ -74,7 +77,7 @@
 
 <script>
 import api from '@/api'
-import lodash from 'lodash'
+import { cloneDeep } from '@/util';
 import { PublicStore } from '@/store/Public'
 import { ElMessage } from 'element-plus'
 import { ref, watch, computed, toRefs } from 'vue'
@@ -149,7 +152,7 @@ export default {
             phone.value = item.value.mobilenum ?? '';
             userpass.value = '';
             let authList = JSON.parse(item.value.authList || '[]')
-            let a = lodash.cloneDeep(store.leftMenu)
+            let a = cloneDeep(store.leftMenu)
             a.forEach(i => { // 设置已经添加的权限
                 if (i.title === '教程中心') {
                     i.ch.push({ router: '/addCourse', title: '文章编辑' },)
@@ -364,25 +367,30 @@ export default {
 .SetPowerDialog {
     box-sizing: border-box;
     font-size: 12px;
+
     .UserName {
         margin-bottom: 10px;
         display: flex;
         align-items: center;
-        & > span:first-child {
+
+        &>span:first-child {
             width: 80px;
             text-align: right;
         }
     }
+
     .AccountInfo {
-        & > div {
+        &>div {
             margin-bottom: 10px;
             display: flex;
             align-items: center;
-            & > span:first-child {
+
+            &>span:first-child {
                 width: 80px;
                 text-align: right;
             }
         }
+
         .Require {
             &::before {
                 content: "*";
@@ -394,55 +402,67 @@ export default {
             }
         }
     }
+
     .OperatePower {
         display: flex;
-        & > span:first-child {
+
+        &>span:first-child {
             width: 80px;
             text-align: right;
             flex-shrink: 0;
             margin-top: 5px;
         }
+
         .HighSearchAddress {
             border: 1px solid rgba(243, 243, 243, 1);
             flex-grow: 1;
             max-height: 280px;
             overflow-y: auto;
-            & > div {
+
+            &>div {
                 display: flex;
                 flex-flow: row wrap;
                 padding: 10px 0px 5px;
                 border-bottom: 1px solid #f3f3f3;
             }
+
             .HighSearchAddressCheck {
                 padding-left: 5px;
                 width: 70px;
                 flex-shrink: 0;
             }
+
             .HighSearchAddressNoPro {
                 padding-left: 5px;
                 flex-shrink: 0;
                 margin-right: 10px;
             }
+
             .HighSearchAddressText {
                 margin-left: 3px;
                 cursor: pointer;
+
                 &:hover {
                     color: #1799ff;
                 }
             }
+
             .HighSearchAddressArea {
                 /deep/.el-checkbox__label {
                     padding-left: 0px;
                 }
             }
+
             .HighSearchAddressHandel {
                 display: flex;
                 justify-content: flex-end;
                 width: 100%;
                 margin-top: 10px;
+
                 span {
                     margin-right: 10px;
                     margin-left: 8px;
+
                     &:hover {
                         text-decoration: underline;
                     }
@@ -451,14 +471,16 @@ export default {
         }
     }
 }
+
 /deep/.el-dialog__body {
     padding: 0px 20px 20px;
 }
+
 /deep/.el-dialog__footer {
     background-color: #fff;
 }
+
 /deep/.el-loading-spinner i {
     color: #818181;
     font-size: 20px;
-}
-</style>
+}</style>
